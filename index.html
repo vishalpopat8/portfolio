@@ -7,14 +7,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
 
-    <!-- Site Title -->
     <title>Vishal Popat | Full Stack Web Developer</title>
 
-    <!-- Place favicon.ico in the root directory -->
     <link rel="apple-touch-icon" href="assets/img/favicon.png">
     <link rel="shortcut icon" type="image/png" href="assets/img/favicon.png">
 
-    <!-- CSS here -->
     <link rel="stylesheet" href="assets/css/animate.min.css">
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/font-awesome-pro.min.css">
@@ -30,10 +27,112 @@
     <link rel="stylesheet" href="assets/css/main-3.css">
     <link rel="stylesheet" href="assets/css/gerold-core.css">
     <link rel="stylesheet" href="assets/css/light-mode.css">
+    <link rel="stylesheet" href="assets/css/gerold-light-core.css">
     <link rel="stylesheet" href="assets/css/meanmenu.css">
     <link rel="stylesheet" href="assets/css/responsive.css">
     <link rel="stylesheet" href="assets/css/responsive-2.css">
     <link rel="stylesheet" href="assets/css/responsive-3.css">
+
+    <style>
+        @media (max-width: 768px) {
+
+            /* Adjust breakpoint as needed */
+            .footer-content-area {
+                justify-content: flex-start !important;
+                /* Or another preferred value */
+            }
+        }
+
+        /* Hide the checkbox */
+        .hidden-checkbox {
+            display: none;
+        }
+
+        /* Button Styles */
+        .theme-toggle {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .toggle-button {
+            background: #e5e7eb;
+            border: none;
+            padding: 14px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            transition: background 0.3s, transform 0.5s ease-in-out;
+        }
+
+        /* Rotation Effect */
+        .toggle-button:has(.hidden-checkbox:checked) {
+            transform: rotate(180deg);
+        }
+
+        .toggle-button:hover {
+            background: #d1d5db;
+        }
+
+        body:has(.hidden-checkbox:checked) .toggle-button {
+            background: #374151;
+        }
+
+        body:has(.hidden-checkbox:checked) .toggle-button:hover {
+            background: #4b5563;
+        }
+
+        /* Icon Wrapper */
+        .icon-wrapper {
+            position: relative;
+            width: 24px;
+            height: 24px;
+        }
+
+        /* Icon Styles */
+        .icon {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            stroke: currentColor;
+            transition: opacity 0.3s ease-in-out, transform 0.5s ease-in-out;
+        }
+
+        .moon {
+            opacity: 0;
+            transform: rotate(-180deg);
+        }
+
+        /* Toggle between sun and moon */
+        .hidden-checkbox:checked+.toggle-button .sun {
+            opacity: 0;
+            transform: rotate(180deg);
+        }
+
+        .hidden-checkbox:checked+.toggle-button .moon {
+            opacity: 1;
+            transform: rotate(0deg);
+        }
+
+        /* Change Theme */
+        body:has(.hidden-checkbox:checked) {
+            background: #111827;
+            color: #f3f4f6;
+        }
+
+        body.light-mode .tj-hero-5-thumb-shape-4-text-animed h2.first {
+            -webkit-text-stroke: 2px rgba(0, 0, 0, 0.2) !important;
+            /* Darker stroke */
+        }
+
+        #emailOne-error {
+            display: none !important;
+        }
+    </style>
 </head>
 
 <body>
@@ -77,41 +176,52 @@
                     <div class="tj-header-5-right">
                         <div class="header-media tj-header-5-right-media">
                             <ul class="ul-reset social-icons tj-header-5-right-social-icons">
-
-                                <li>
-                                    <a href="https://www.linkedin.com/in/vishal-popat/" target="_blank"><i
-                                            class="fa-brands fa-linkedin-in"></i></a>
-                                </li>
-                                <li>
-                                    <a href="https://github.com/vishalpopat8" target="_blank"><i
-                                            class="fa-brands fa-github"></i></a>
-                                </li>
-                                <li>
-                                    <a href="https://www.instagram.com/vishal.popat/" target="_blank"><i
-                                            class="fa-brands fa-instagram"></i></a>
-                                </li>
+                                <li><a href="https://www.linkedin.com/in/vishal-popat/" target="_blank"><i
+                                            class="fa-brands fa-linkedin-in"></i></a></li>
+                                <li><a href="https://github.com/vishalpopat8" target="_blank"><i
+                                            class="fa-brands fa-github"></i></a></li>
+                                <li><a href="https://www.instagram.com/vishal.popat/" target="_blank"><i
+                                            class="fa-brands fa-instagram"></i></a></li>
                                 <li><a href="https://www.facebook.com/vishalpopat29/" target="_blank"><i
-                                            class="fa-brands fa-facebook"></i></a>
-                                </li>
+                                            class="fa-brands fa-facebook"></i></a></li>
                             </ul>
                         </div>
                         <div class="tj-header-button">
-                            <a href="#contact" class="btn tj-btn-primary">Lets Talk <i
+                            <a href="#contact" class="btn tj-btn-primary">Let's Talk <i
                                     class="fa-regular fa-arrow-right"></i></a>
                         </div>
-                        <div class="menu-bar d-lg-none">
-                            <button>
-                                <span></span>
-                                <span></span>
-                                <span></span>
-                                <span></span>
-                            </button>
+
+                        <div class="theme-toggle ms-3">
+                            <input type="checkbox" id="theme-toggle" class="hidden-checkbox">
+                            <label for="theme-toggle" class="toggle-button">
+                                <div class="icon-wrapper">
+                                    <svg class="icon sun" viewBox="0 0 24 24" fill="none"
+                                        style="stroke: #2a1454 !important;" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <circle cx="12" cy="12" r="5"></circle>
+                                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                                    </svg>
+                                    <svg class="icon moon" viewBox="0 0 24 24" fill="none"
+                                        style="stroke: #8750f7 !important;" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                                    </svg>
+                                </div>
+                            </label>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </header>
+
     <header class="tj-header-area header-2 header-3 header-5 header-sticky sticky-out">
         <div class="container-fluid">
             <div class="row">
@@ -149,24 +259,38 @@
                             <a href="#contact" class="btn tj-btn-primary">Lets Talk <i
                                     class="fa-regular fa-arrow-right"></i></a>
                         </div>
-                        <div class="menu-bar d-lg-none">
-                            <button>
-                                <span></span>
-                                <span></span>
-                                <span></span>
-                                <span></span>
-                            </button>
+                        <div class="theme-toggle ms-3">
+                            <input type="checkbox" id="theme-toggle" class="hidden-checkbox">
+                            <label for="theme-toggle" class="toggle-button">
+                                <div class="icon-wrapper">
+                                    <svg class="icon sun" viewBox="0 0 24 24" fill="none"
+                                        style="stroke: #2a1454 !important;" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <circle cx="12" cy="12" r="5"></circle>
+                                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                                    </svg>
+                                    <svg class="icon moon" viewBox="0 0 24 24" fill="none"
+                                        style="stroke: #8750f7 !important;" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                                    </svg>
+                                </div>
+                            </label>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </header>
-    <!-- end: Header Area -->
 
-    <main class="site-content" id="content">
-
-        <!-- start: Hero Area -->
+    <main id="content">
         <section class="tj-hero-5-area">
             <div class="container">
                 <div class="row align-items-end">
@@ -211,104 +335,9 @@
                     </div>
                 </div>
             </div>
-            <div class="tj-hero-5-thumb-mobile d-lg-none d-block">
-                <img src="assets/img/hero/hero-5-thumb.png" alt="">
-            </div>
 
         </section>
-        <!-- end: Hero Area -->
 
-        <!-- start: Maquee Area -->
-        <section class="tj-maquee-section maquee-style-5">
-            <div class="maquee-bg-shape"></div>
-            <div class="swiper maquee-slider-one">
-                <div class="swiper-wrapper maquee-wrapper">
-                    <div class="swiper-slide marquee-item">
-                        <div class="marquee-logo">
-                            <img src="assets/img/roll/roll-img1.png" alt="thumb">
-                        </div>
-                    </div>
-                    <div class="swiper-slide marquee-item">
-                        <div class="marquee-logo">
-                            <img src="assets/img/roll/roll-img2.png" alt="thumb">
-                        </div>
-                    </div>
-                    <div class="swiper-slide marquee-item">
-                        <div class="marquee-logo">
-                            <img src="assets/img/roll/roll-img3.png" alt="thumb">
-                        </div>
-                    </div>
-                    <div class="swiper-slide marquee-item">
-                        <div class="marquee-logo">
-                            <img src="assets/img/roll/roll-img4.png" alt="thumb">
-                        </div>
-                    </div>
-                    <div class="swiper-slide marquee-item">
-                        <div class="marquee-logo">
-                            <img src="assets/img/roll/roll-img5.png" alt="thumb">
-                        </div>
-                    </div>
-                    <div class="swiper-slide marquee-item">
-                        <div class="marquee-logo">
-                            <img src="assets/img/roll/roll-img6.png" alt="thumb">
-                        </div>
-                    </div>
-                    <div class="swiper-slide marquee-item">
-                        <div class="marquee-logo">
-                            <img src="assets/img/roll/roll-img7.png" alt="thumb">
-                        </div>
-                    </div>
-                    <div class="swiper-slide marquee-item">
-                        <div class="marquee-logo">
-                            <img src="assets/img/roll/roll-img8.png" alt="thumb">
-                        </div>
-                    </div>
-                    <div class="swiper-slide marquee-item">
-                        <div class="marquee-logo">
-                            <img src="assets/img/roll/roll-img1.png" alt="thumb">
-                        </div>
-                    </div>
-                    <div class="swiper-slide marquee-item">
-                        <div class="marquee-logo">
-                            <img src="assets/img/roll/roll-img2.png" alt="thumb">
-                        </div>
-                    </div>
-                    <div class="swiper-slide marquee-item">
-                        <div class="marquee-logo">
-                            <img src="assets/img/roll/roll-img3.png" alt="thumb">
-                        </div>
-                    </div>
-                    <div class="swiper-slide marquee-item">
-                        <div class="marquee-logo">
-                            <img src="assets/img/roll/roll-img4.png" alt="thumb">
-                        </div>
-                    </div>
-                    <div class="swiper-slide marquee-item">
-                        <div class="marquee-logo">
-                            <img src="assets/img/roll/roll-img5.png" alt="thumb">
-                        </div>
-                    </div>
-                    <div class="swiper-slide marquee-item">
-                        <div class="marquee-logo">
-                            <img src="assets/img/roll/roll-img6.png" alt="thumb">
-                        </div>
-                    </div>
-                    <div class="swiper-slide marquee-item">
-                        <div class="marquee-logo">
-                            <img src="assets/img/roll/roll-img7.png" alt="thumb">
-                        </div>
-                    </div>
-                    <div class="swiper-slide marquee-item">
-                        <div class="marquee-logo">
-                            <img src="assets/img/roll/roll-img8.png" alt="thumb">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- end: Maquee Area -->
-
-        <!-- start: Portfolio Area -->
         <section class="portfolio-section style-5" id="projects">
             <div class="container">
                 <div class="row">
@@ -455,7 +484,6 @@
                 </div>
             </div>
         </section>
-        <!-- end: Portfolio Area -->
 
         <div id="jobsphere-wrapper" class="popup_content_area zoom-anim-dialog mfp-hide" data-lenis-prevent="">
             <div class="popup_modal_img">
@@ -1020,7 +1048,6 @@
             </div>
         </div>
 
-        <!-- start: Resume Area -->
         <section class="resume-section style-5" id="resume">
             <div class="container">
                 <div class="row">
@@ -1248,7 +1275,6 @@
                 </div>
             </div>
         </section>
-        <!-- end: Resume Area -->
 
         <div id="itsupport-wrapper" class="popup_content_area zoom-anim-dialog mfp-hide" data-lenis-prevent="">
             <iframe src="assets/certificates/Coursera F357Z6V8PF7A.pdf" frameborder="0"
@@ -1268,7 +1294,6 @@
                 frameborder="0" style="width: 100%; height: 100vh;"></iframe>
         </div>
 
-        <!-- start: Maquee Area -->
         <section class="tj-maquee-section style-5" id="skills">
             <div class="tj-maquee-slider-one">
                 <div class="swiper maquee-slider-one">
@@ -1279,7 +1304,7 @@
                                     <img src="assets/img/icons/star.svg" alt="Icon">
                                 </div>
                                 <div class="marquee-title">
-                                    <h5 class="title">Development</h5>
+                                    <h5 class="title">Web Development</h5>
                                 </div>
                             </div>
                         </div>
@@ -1503,9 +1528,7 @@
                 </div>
             </div>
         </section>
-        <!-- end: Maquee Area -->
 
-        <!-- start: Progress Area -->
         <section class="tj-progress-section style-5">
             <div class="container">
                 <div class="row">
@@ -1727,9 +1750,7 @@
                 <img src="assets/img/shapes/h5-progress-2.png" alt="Shapes">
             </div>
         </section>
-        <!-- end: Progress Area -->
 
-        <!-- start: Contact Area -->
         <section class="contact-section style-5" id="contact">
             <div class="container">
                 <div class="row">
@@ -1823,11 +1844,9 @@
                 </div>
             </div>
         </section>
-        <!-- end: Contact Area -->
 
     </main>
 
-    <!-- start: Footer Area -->
     <footer class="tj-footer-area footer-5">
         <div class="container">
             <div class="row">
@@ -1889,9 +1908,7 @@
             </div>
         </div>
     </footer>
-    <!-- end: Footer Area -->
 
-    <!-- JS here -->
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/js/bootstrap.bundle.min.js"></script>
 
@@ -1917,6 +1934,124 @@
     <script src="assets/js/validate.min.js"></script>
     <script src="assets/js/meanmenu.js"></script>
     <script src="assets/js/main.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+    </script>
+
+    <script>
+        (function () {
+            emailjs.init({ publicKey: "JOa8MgIubDWog2JTl" }); // Replace with your EmailJS Public Key
+        })();
+
+        document.getElementById("contact-form").addEventListener("submit", function (event) {
+            event.preventDefault(); // Prevent default form submission
+
+            // Form fields
+            let form = document.getElementById("contact-form");
+            let firstName = document.getElementById("firstName");
+            let lastName = document.getElementById("lastName");
+            let email = document.getElementById("emailOne");
+            let phone = document.getElementById("phoneOne");
+            let message = document.getElementById("messageOne");
+
+            let isValid = true;
+
+            // Clear previous error messages
+            document.querySelectorAll(".error-message").forEach(el => el.remove());
+
+            function showError(input, message) {
+                let error = document.createElement("small");
+                error.className = "error-message";
+                error.style.color = "red";
+                error.innerText = message;
+                input.parentNode.appendChild(error);
+            }
+
+            if (!firstName.value.trim()) {
+                showError(firstName, "First Name is required.");
+                isValid = false;
+            } else if (/\d/.test(firstName.value.trim())) {
+                showError(firstName, "First Name cannot contain numbers.");
+                isValid = false;
+            }
+
+            if (!lastName.value.trim()) {
+                showError(lastName, "Last Name is required.");
+                isValid = false;
+            } else if (/\d/.test(lastName.value.trim())) {
+                showError(lastName, "Last Name cannot contain numbers.");
+                isValid = false;
+            }
+
+            if (!email.value.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value.trim())) {
+                showError(email, "Please enter a valid email.");
+                isValid = false;
+            }
+
+            if (!phone.value.trim() || !/^\d{10}$/.test(phone.value.trim())) {
+                showError(phone, "Please enter a valid 10-digit phone number.");
+                isValid = false;
+            }
+
+            if (!message.value.trim()) {
+                showError(message, "Message cannot be empty.");
+                isValid = false;
+            }
+
+            if (!isValid) return;
+
+            // Prepare email parameters
+            const params = {
+                firstName: firstName.value.trim(),
+                lastName: lastName.value.trim(),
+                email: email.value.trim(),
+                phone: phone.value.trim(),
+                message: message.value.trim()
+            };
+
+            // Send email using EmailJS
+            emailjs.send("service_p2om7xd", "template_hbces6j", params)
+                .then(response => {
+                    form.innerHTML = "<div style='text-align: center; color: green; font-size: 18px;'><p>Message sent successfully!</p></div>";
+                })
+                .catch(error => {
+                    console.error("Email sending failed:", error);
+                    alert("Failed to send message. Please try again.");
+                });
+        });
+    </script>
+
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const toggles = document.querySelectorAll("#theme-toggle"); // Select all toggles
+            const body = document.body;
+
+            // Load theme from localStorage
+            const savedTheme = localStorage.getItem("theme") || "dark";
+
+            if (savedTheme === "light") {
+                body.classList.add("light-mode");
+                toggles.forEach(toggle => toggle.checked = false); // Show Sun (light mode)
+            } else {
+                body.classList.remove("light-mode");
+                toggles.forEach(toggle => toggle.checked = true); // Show Moon (dark mode)
+            }
+
+            // Toggle theme and sync across all toggles
+            function toggleTheme() {
+                const isLightMode = body.classList.toggle("light-mode");
+                localStorage.setItem("theme", isLightMode ? "light" : "dark");
+                toggles.forEach(toggle => toggle.checked = isLightMode ? false : true);
+            }
+
+            // Attach event listeners to all theme toggles
+            toggles.forEach(toggle => {
+                toggle.addEventListener("change", toggleTheme);
+            });
+        });
+
+
+    </script>
 </body>
 
 </html>
