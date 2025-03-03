@@ -9,8 +9,8 @@
 
     <title>Vishal Popat | Full Stack Web Developer</title>
 
-    <link rel="apple-touch-icon" href="assets/img/favicon.png">
-    <link rel="shortcut icon" type="image/png" href="assets/img/favicon.png">
+    <link rel="apple-touch-icon" href="assets/img/logo/logo-dark.svg">
+    <link rel="shortcut icon" type="image/png" href="assets/img/logo/logo-dark.svg">
 
     <link rel="stylesheet" href="assets/css/animate.min.css">
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
@@ -132,6 +132,32 @@
         #emailOne-error {
             display: none !important;
         }
+
+        @media (min-width: 768px) {
+
+            /* Adjust this breakpoint as necessary */
+            .light-mode .tj-header-area.header-5.header-sticky {
+                padding: 10px 60px 10px 60px;
+            }
+
+            .tj-header-area.header-5.header-sticky {
+                padding: 10px 60px 10px 60px;
+            }
+        }
+
+        .tj-header-5-logo-box img {
+            width: 60%;
+        }
+
+        .tj-header-5-logo-box {
+            text-align: center;
+        }
+
+        @media (max-width: 767px) {
+            .light-mode .tj-header-area.header-5.header-sticky {
+                padding: 12px 0px;
+            }
+        }
     </style>
 </head>
 
@@ -168,7 +194,9 @@
                     <div class="tj-header-5-logo">
                         <div class="tj-header-5-logo-box">
                             <a href="index.html">
-                                <img src="assets/img/logo/logo-5.png" alt="Logo">
+                                <img class="logo" src="assets/img/logo/logo.svg"
+                                    data-light-logo="assets/img/logo/logo-dark.svg"
+                                    data-dark-logo="assets/img/logo/logo.svg" alt="Logo">
                             </a>
                         </div>
                     </div>
@@ -229,7 +257,9 @@
                     <div class="tj-header-5-logo">
                         <div class="logo-box">
                             <a href="index.html">
-                                <img src="assets/img/logo/logo.png" alt="Logo">
+                                <img class="logo" src="assets/img/logo/logo.svg"
+                                    data-light-logo="assets/img/logo/logo-dark.svg"
+                                    data-dark-logo="assets/img/logo/logo.svg" alt="Logo">
                             </a>
                         </div>
                     </div>
@@ -2020,27 +2050,37 @@
         });
     </script>
 
-
     <script>
         document.addEventListener("DOMContentLoaded", function () {
-            const toggles = document.querySelectorAll("#theme-toggle"); // Select all toggles
+            const toggles = document.querySelectorAll("#theme-toggle");
             const body = document.body;
+            const logos = document.querySelectorAll(".logo"); // Select both logos
 
             // Load theme from localStorage
             const savedTheme = localStorage.getItem("theme") || "dark";
 
+            function updateTheme(isLightMode) {
+                body.classList.toggle("light-mode", isLightMode);
+                localStorage.setItem("theme", isLightMode ? "light" : "dark");
+
+                // Update both logo sources
+                logos.forEach(logo => {
+                    logo.src = isLightMode ? logo.dataset.lightLogo : logo.dataset.darkLogo;
+                });
+            }
+
             if (savedTheme === "light") {
-                body.classList.add("light-mode");
-                toggles.forEach(toggle => toggle.checked = false); // Show Sun (light mode)
+                updateTheme(true);
+                toggles.forEach(toggle => toggle.checked = false);
             } else {
-                body.classList.remove("light-mode");
-                toggles.forEach(toggle => toggle.checked = true); // Show Moon (dark mode)
+                updateTheme(false);
+                toggles.forEach(toggle => toggle.checked = true);
             }
 
             // Toggle theme and sync across all toggles
             function toggleTheme() {
-                const isLightMode = body.classList.toggle("light-mode");
-                localStorage.setItem("theme", isLightMode ? "light" : "dark");
+                const isLightMode = body.classList.contains("light-mode") ? false : true;
+                updateTheme(isLightMode);
                 toggles.forEach(toggle => toggle.checked = isLightMode ? false : true);
             }
 
@@ -2049,9 +2089,9 @@
                 toggle.addEventListener("change", toggleTheme);
             });
         });
-
-
     </script>
+
+
 </body>
 
 </html>
