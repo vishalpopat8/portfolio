@@ -322,7 +322,7 @@
 
     <main id="content">
         <section class="tj-hero-5-area">
-            <div class="container">
+            <div class="container mb-4">
                 <div class="row align-items-end">
                     <div class="col">
                         <div class="tj-hero-5-wrapper">
@@ -1967,94 +1967,19 @@
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
     </script>
 
-    <script>
-        (function () {
-            emailjs.init({ publicKey: "JOa8MgIubDWog2JTl" }); // Replace with your EmailJS Public Key
-        })();
-
-        document.getElementById("contact-form").addEventListener("submit", function (event) {
-            event.preventDefault(); // Prevent default form submission
-
-            // Form fields
-            let form = document.getElementById("contact-form");
-            let firstName = document.getElementById("firstName");
-            let lastName = document.getElementById("lastName");
-            let email = document.getElementById("emailOne");
-            let phone = document.getElementById("phoneOne");
-            let message = document.getElementById("messageOne");
-
-            let isValid = true;
-
-            // Clear previous error messages
-            document.querySelectorAll(".error-message").forEach(el => el.remove());
-
-            function showError(input, message) {
-                let error = document.createElement("small");
-                error.className = "error-message";
-                error.style.color = "red";
-                error.innerText = message;
-                input.parentNode.appendChild(error);
-            }
-
-            if (!firstName.value.trim()) {
-                showError(firstName, "First Name is required.");
-                isValid = false;
-            } else if (/\d/.test(firstName.value.trim())) {
-                showError(firstName, "First Name cannot contain numbers.");
-                isValid = false;
-            }
-
-            if (!lastName.value.trim()) {
-                showError(lastName, "Last Name is required.");
-                isValid = false;
-            } else if (/\d/.test(lastName.value.trim())) {
-                showError(lastName, "Last Name cannot contain numbers.");
-                isValid = false;
-            }
-
-            if (!email.value.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value.trim())) {
-                showError(email, "Please enter a valid email.");
-                isValid = false;
-            }
-
-            if (!phone.value.trim() || !/^\d{10}$/.test(phone.value.trim())) {
-                showError(phone, "Please enter a valid 10-digit phone number.");
-                isValid = false;
-            }
-
-            if (!message.value.trim()) {
-                showError(message, "Message cannot be empty.");
-                isValid = false;
-            }
-
-            if (!isValid) return;
-
-            // Prepare email parameters
-            const params = {
-                firstName: firstName.value.trim(),
-                lastName: lastName.value.trim(),
-                email: email.value.trim(),
-                phone: phone.value.trim(),
-                message: message.value.trim()
-            };
-
-            // Send email using EmailJS
-            emailjs.send("service_p2om7xd", "template_x0nqrks", params)
-                .then(response => {
-                    form.innerHTML = "<div style='text-align: center; color: green; font-size: 18px;'><p>Message sent successfully!</p></div>";
-                })
-                .catch(error => {
-                    console.error("Email sending failed:", error);
-                    alert("Failed to send message. Please try again.");
-                });
-        });
-    </script>
+    <script src="assets/js/contact.js"></script>
 
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             const toggles = document.querySelectorAll("#theme-toggle");
             const body = document.body;
             const logos = document.querySelectorAll(".logo"); // Select both logos
+
+            // Define the light mode SVG
+            const lightModeSVG = `
+            <svg width="22" height="24" viewBox="0 0 22 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M21.6022 18.3863C21.4999 18.5568 21.3341 18.6798 21.1412 18.728C20.9482 18.7763 20.744 18.746 20.5735 18.6438L11.7097 13.325V23C11.7097 23.1989 11.6307 23.3897 11.4901 23.5304C11.3494 23.671 11.1586 23.75 10.9597 23.75C10.7608 23.75 10.57 23.671 10.4294 23.5304C10.2887 23.3897 10.2097 23.1989 10.2097 23V13.325L1.34597 18.6438C1.22906 18.7132 1.09566 18.7499 0.95972 18.75C0.795364 18.7506 0.635366 18.6972 0.504327 18.598C0.373288 18.4988 0.278465 18.3593 0.234439 18.2009C0.190414 18.0426 0.199623 17.8742 0.260651 17.7215C0.321679 17.5689 0.431146 17.4406 0.57222 17.3563L9.50222 12L0.57347 6.64378C0.402737 6.54134 0.279691 6.37527 0.2314 6.18211C0.18311 5.98895 0.21353 5.78451 0.31597 5.61378C0.41841 5.44305 0.584478 5.32 0.77764 5.27171C0.970803 5.22342 1.17524 5.25384 1.34597 5.35628L10.2097 10.675V1.00003C10.2097 0.801118 10.2887 0.610353 10.4294 0.4697C10.57 0.329048 10.7608 0.250031 10.9597 0.250031C11.1586 0.250031 11.3494 0.329048 11.4901 0.4697C11.6307 0.610353 11.7097 0.801118 11.7097 1.00003V10.675L20.5735 5.35628C20.7442 5.25384 20.9486 5.22342 21.1418 5.27171C21.335 5.32 21.501 5.44305 21.6035 5.61378C21.7059 5.78451 21.7363 5.98895 21.688 6.18211C21.6397 6.37527 21.5167 6.54134 21.346 6.64378L12.4172 12L21.346 17.3563C21.4305 17.407 21.5042 17.474 21.5628 17.5532C21.6214 17.6325 21.6638 17.7225 21.6876 17.8182C21.7114 17.9138 21.7161 18.0132 21.7015 18.1107C21.6868 18.2082 21.6531 18.3018 21.6022 18.3863Z"></path>
+            </svg>`;
 
             // Load theme from localStorage
             const savedTheme = localStorage.getItem("theme") || "dark";
@@ -2063,7 +1988,18 @@
                 body.classList.toggle("light-mode", isLightMode);
                 localStorage.setItem("theme", isLightMode ? "light" : "dark");
 
-                // Update both logo sources
+                // Select only marquee icons inside .tj-maquee-slider-one
+                const marqueeIcons = document.querySelectorAll(".tj-maquee-slider-one .marquee-icon");
+
+                marqueeIcons.forEach(icon => {
+                    if (isLightMode) {
+                        icon.innerHTML = lightModeSVG;
+                    } else {
+                        icon.innerHTML = '<img src="assets/img/icons/star.svg" alt="Icon">';
+                    }
+                });
+
+                // Update both logos
                 logos.forEach(logo => {
                     logo.src = isLightMode ? logo.dataset.lightLogo : logo.dataset.darkLogo;
                 });
@@ -2090,6 +2026,7 @@
             });
         });
     </script>
+
 
 
 </body>
