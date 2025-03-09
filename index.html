@@ -158,7 +158,6 @@
                 padding: 12px 0px;
             }
         }
-
     </style>
 </head>
 
@@ -1308,22 +1307,27 @@
         </section>
 
         <div id="itsupport-wrapper" class="popup_content_area zoom-anim-dialog mfp-hide" data-lenis-prevent="">
-            <iframe src="assets/certificates/Coursera F357Z6V8PF7A.pdf" frameborder="0"
-                style="width: 100%; height: 100vh;"></iframe>
+            <iframe src="assets/certificates/Coursera F357Z6V8PF7A.pdf" frameborder="0" width="100%"
+                height="600"></iframe>
         </div>
+
         <div id="project-wrapper" class="popup_content_area zoom-anim-dialog mfp-hide" data-lenis-prevent="">
-            <iframe src="assets/certificates/Coursera QJWGGSUBBH87.pdf" frameborder="0"
-                style="width: 100%; height: 100vh;"></iframe>
+            <iframe src="assets/certificates/Coursera QJWGGSUBBH87.pdf" frameborder="0" width="100%"
+                height="600"></iframe>
         </div>
+
         <div id="python-wrapper" class="popup_content_area zoom-anim-dialog mfp-hide" data-lenis-prevent="">
-            <iframe src="assets/certificates/Coursera DM9K8VFGB63A.pdf" frameborder="0"
-                style="width: 100%; height: 100vh;"></iframe>
+            <iframe src="assets/certificates/Coursera DM9K8VFGB63A.pdf" frameborder="0" width="100%"
+                height="600"></iframe>
         </div>
+
         <div id="servicenow-wrapper" class="popup_content_area zoom-anim-dialog mfp-hide" data-lenis-prevent="">
             <iframe
                 src="assets/certificates/CertificateOfCompletion_ServiceNow IT Leadership Professional Certificate.pdf"
-                frameborder="0" style="width: 100%; height: 100vh;"></iframe>
+                frameborder="0" width="100%" height="600"></iframe>
         </div>
+
+
 
         <section class="tj-maquee-section style-5" id="skills">
             <div class="tj-maquee-slider-one">
@@ -2028,6 +2032,33 @@
         });
     </script>
 
+    <script>
+        function adjustIframeHeight() {
+            // Define height values
+            let mobileHeight = "300";
+            let desktopHeight = "600";
+
+            // Select iframes by ID and update height dynamically
+            let itsupportIframe = document.getElementById("itsupport-wrapper").querySelector("iframe");
+            let projectIframe = document.getElementById("project-wrapper").querySelector("iframe");
+            let pythonIframe = document.getElementById("python-wrapper").querySelector("iframe");
+            let servicenowIframe = document.getElementById("servicenow-wrapper").querySelector("iframe");
+
+            // Function to set iframe height based on screen width
+            let newHeight = window.innerWidth <= 768 ? mobileHeight : desktopHeight;
+
+            itsupportIframe.setAttribute("height", newHeight);
+            projectIframe.setAttribute("height", newHeight);
+            pythonIframe.setAttribute("height", newHeight);
+            servicenowIframe.setAttribute("height", newHeight);
+        }
+
+        // Run on page load
+        adjustIframeHeight();
+
+        // Run when the window is resized
+        window.addEventListener("resize", adjustIframeHeight);
+    </script>
 
 
 </body>
